@@ -8,93 +8,84 @@ class TravelApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
-    );
-  }
-}
+        home: Scaffold(
 
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Travel App"),
-        backgroundColor: Colors.blueAccent,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {
-              // Navigate to profile screen
-            },
+          appBar: AppBar( //stays fixed on top
+            title: Text("Travel Delight"),
+            backgroundColor: Colors.purpleAccent,
+            actions: [
+              IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {
+                },
+              ),
+            ],
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Search Bar
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search destinations...',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+
+          body: SingleChildScrollView(//to allow scrolling otherwise it produces error
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                 padding: const EdgeInsets.all(5.0),
+                child: Column(
+                  children: [
+                Text("HI! User", style: TextStyle(fontSize: 25, color: Colors.blueAccent),),
+                Text("Let's explore INDIA", style: TextStyle(fontSize: 25, color: Colors.blueAccent),),
+                ],
+                ),
+                ),
+                SizedBox(height: 10,),
+
+                // Recommendations
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    "RECOMMENDATIONS",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.orange),
                   ),
                 ),
-              ),
-            ),
-            SizedBox(height: 20),
+                SizedBox(height: 10),
 
-            // Featured Destinations (Horizontal Scroll)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                "Featured Destinations",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              height: 200,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _buildDestinationCard('assets/destination1.jpg', 'Paris'),
-                  _buildDestinationCard('assets/destination2.jpg', 'New York'),
-                  _buildDestinationCard('assets/destination3.jpg', 'Tokyo'),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
+                //Horizontal Scroll given here
+                Container(
+                  height: 200,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _buildDestinationCard("assets/images/agra.jpg","AGRA"),
+                      _buildDestinationCard("assets/images/hyderabad.jpg","HYDERABAD"),
+                      _buildDestinationCard("assets/images/jaipur.jpg","JAIPUR"),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
 
-            // Popular Places (Vertical List)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                "Popular Places",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+                // Travel Packages (using Vertical List)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    "Popular Packages",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height: 10),
+                _buildPlaceItem('assets/images/agra.jpg', 'Taj Mahal', 'RS 3500'),
+                _buildPlaceItem('assets/images/hyderabad.jpg', 'Char Minar', 'RS 4600'),
+                _buildPlaceItem('assets/images/jaipur.jpg', 'Hawa Mahal', 'RS 2400'),
+              ],
             ),
-            SizedBox(height: 10),
-            _buildPlaceItem('assets/place1.jpg', 'Eiffel Tower', 'Paris'),
-            _buildPlaceItem('assets/place2.jpg', 'Statue of Liberty', 'New York'),
-            _buildPlaceItem('assets/place3.jpg', 'Tokyo Tower', 'Tokyo'),
-          ],
-        ),
-      ),
+          ),
+        )
     );
   }
 
   Widget _buildDestinationCard(String imagePath, String destinationName) {
     return Container(
-      margin: EdgeInsets.only(right: 16.0),
-      width: 160,
+      margin: EdgeInsets.only(right: 16.0, left: 16.0,),
+      width: 250,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
           image: AssetImage(imagePath),
           fit: BoxFit.cover,
@@ -104,9 +95,9 @@ class HomeScreen extends StatelessWidget {
         alignment: Alignment.bottomLeft,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          gradient: LinearGradient(
-            colors: [Colors.black.withOpacity(0.6), Colors.transparent],
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient( //used color gradient here
+            colors: [Colors.black, Colors.transparent],
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
           ),
@@ -119,7 +110,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPlaceItem(String imagePath, String placeName, String cityName) {
+  Widget _buildPlaceItem(String imagePath, String placeName, String price) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Row(
@@ -128,7 +119,7 @@ class HomeScreen extends StatelessWidget {
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
                 image: AssetImage(imagePath),
                 fit: BoxFit.cover,
@@ -143,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                 placeName,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              Text(cityName, style: TextStyle(color: Colors.grey)),
+              Text(price, style: TextStyle(color: Colors.grey)),
             ],
           ),
         ],
