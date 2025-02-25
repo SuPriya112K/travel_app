@@ -8,12 +8,12 @@ class TravelApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
+        home: Scaffold( //Scaffold widget is being used here
 
           appBar: AppBar( //stays fixed on top
             title: Text("Travel Delight"),
             backgroundColor: Colors.purpleAccent,
-            actions: [
+            actions: [  //to get a clickable profile button
               IconButton(
                 icon: Icon(Icons.person),
                 onPressed: () {
@@ -23,7 +23,7 @@ class TravelApp extends StatelessWidget {
           ),
 
           body: SingleChildScrollView(//to allow scrolling otherwise it produces error
-            child: Column(
+            child: Column( //Column widget used here
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
@@ -80,7 +80,7 @@ class TravelApp extends StatelessWidget {
     );
   }
 
-  Widget _buildDestinationCard(String imagePath, String destinationName) {
+  Widget _buildDestinationCard(String imagePath, String destinationName) { //defining the widget 
     return Container(
       margin: EdgeInsets.only(right: 16.0, left: 16.0,),
       width: 250,
@@ -110,7 +110,7 @@ class TravelApp extends StatelessWidget {
     );
   }
 
-  Widget _buildPlaceItem(String imagePath, String placeName, String price) {
+  Widget _buildPlaceItem(String imagePath, String placeName, String price) { //defining the widget
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Row(
