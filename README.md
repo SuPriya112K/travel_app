@@ -13,4 +13,8 @@
 #we will then write the paths of our images in pubspec,yaml file under the assets after uncommenting it from the default file
 #using various codeblocks in our file we can eventually make a visually appealing mobile application
 
-#I did face challenges while making this project as i used for the first time. The study jams did help a lot 
+#I did face challenges while making this project as i used for the first time. The study jams did help a lot.
+#setting up flutter and android studio and seeing how things work was a hassle in itself 
+#i feel like i can make better containers in the applications to make it more visually appealing with time and more practice
+#i still have to master dart to make better mobile applications
+#looking forward to improve gradually :)
